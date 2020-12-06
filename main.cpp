@@ -52,6 +52,10 @@ int main()
     sprite.setTexture(t.getTexture());
     t.clear();  t.draw(sBackground);
     
+    Font font;font.loadFromFile(Sansation_Bold.ttf);
+    Text text("You Win!",font,35);
+    text.setPosition(W/2-80,20);
+    
     Shader* shader = new Shader;
     shader->loadfromfile("shader.frag",Shader::Fragment);
     shader->setParameter("frag_ScreenResolution", Vector2f(W,H));
