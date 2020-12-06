@@ -51,7 +51,13 @@ int main()
     t.setSmooth(true);
     sprite.setTexture(t.getTexture());
     t.clear();  t.draw(sBackground);
-
+    
+    Shader* shader = new Shader;
+    shader->loadfromfile("shader.frag",Shader::Fragment);
+    shader->setParameter("frag_ScreenResolution", Vector2f(W,H));
+    shader->setParameter("frag_LightAttenuation", 100);
+    RenderStates states; states.shader = shader;
+      
     bool Game=1;
 
     while (window.isOpen())
@@ -83,10 +89,13 @@ int main()
             field[p1.x][p1.y]=1; 
             field[p2.x][p2.y]=1;
     
-            CircleShape c(3);
-            c.setPosition(p1.x,p1.y); c.setFillColor(p1.color);    t.draw(c);
-            c.setPosition(p2.x,p2.y); c.setFillColor(p2.color);    t.draw(c);
-            t.display();    
+            t.display();  
+          shader->setParameter("frag_LightOrigin", Vector2f(p1.x,p1.y));
+          shader->setParameter("frag_LightColor", p1.getColor());
+          t.draw(sprite. states);
+          shader->setParameter("frag_LightOrigin", Vector2f(p2.x,p2.y));
+          shader->setParameter("frag_LightColor", p2.getColor());
+          t.draw(sprite. states);
         }
 
        ////// draw  ///////
