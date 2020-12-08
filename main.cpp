@@ -3,6 +3,7 @@
 
 using namespace sf;
 
+//declarando variaveis
 const int W=600;
 const int H=480;
 int speed = 4;
@@ -37,9 +38,9 @@ int main()
 {
     srand(time(0));
 
-    RenderWindow window(VideoMode(W, H), "The Tron Game!");
+    RenderWindow window(VideoMode(W, H), "The Tron Game!"); //abre janela e da o nome de "The Tron Game"
     window.setFramerateLimit(60);
-
+    //carrega textura de um arquivo e inicializa o sprite
     Texture texture;
     texture.loadFromFile("background.jpg");
     Sprite sBackground(texture);
