@@ -72,13 +72,13 @@ int main()
     while (window.isOpen())
     {
         Event e;
-        while (window.pollEvent(e))//detecta se um evento fecha o programa
+        while (window.pollEvent(e))// Detecta se um evento fecha o programa
         {
             if (e.type == Event::Closed) 
                 window.close();
         }
       
-    // movimentação
+    // Movimentação
         if (Keyboard::isKeyPressed(Keyboard::Left)) if (p1.dir!=2) p1.dir=1;
         if (Keyboard::isKeyPressed(Keyboard::Right)) if (p1.dir!=1)  p1.dir=2;
         if (Keyboard::isKeyPressed(Keyboard::Up)) if (p1.dir!=0) p1.dir=3;
@@ -91,7 +91,7 @@ int main()
     
       
         if (!Game)    continue;
-
+    // Atualiza as posições do personagem
         for(int i=0;i<speed;i++)
         {
             p1.tick(); p2.tick();
