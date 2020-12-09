@@ -19,7 +19,8 @@ struct player
     color=c;
     dir=rand() % 4;
   }
-  void tick()
+ //reponsavel pelas posições numericas do display
+ void tick()
   {
     if (dir==0) y+=1;
     if (dir==1) x-=1;
@@ -45,8 +46,8 @@ int main()
     texture.loadFromFile("background.jpg");
     Sprite sBackground(texture);
 
-    player p1(Color::Red), p2(Color::Green); 
-
+    player p1(Color::Red), p2(Color::Green); //declara a cor do player 1 e 2
+    
     Sprite sprite;
     RenderTexture t;
     t.create(W, H);
@@ -54,10 +55,12 @@ int main()
     sprite.setTexture(t.getTexture());
     t.clear();  t.draw(sBackground);
     
+    //Textos
     Font font;font.loadFromFile(Sansation_Bold.ttf);
     Text text("You Win!",font,35);
     text.setPosition(W/2-80,20);
     
+    //Shaders
     Shader* shader = new Shader;
     shader->loadfromfile("shader.frag",Shader::Fragment);
     shader->setParameter("frag_ScreenResolution", Vector2f(W,H));
@@ -71,10 +74,11 @@ int main()
         Event e;
         while (window.pollEvent(e))
         {
-            if (e.type == Event::Closed)
+            if (e.type == Event::Closed) 
                 window.close();
         }
-
+      
+    // movimentação
         if (Keyboard::isKeyPressed(Keyboard::Left)) if (p1.dir!=2) p1.dir=1;
         if (Keyboard::isKeyPressed(Keyboard::Right)) if (p1.dir!=1)  p1.dir=2;
         if (Keyboard::isKeyPressed(Keyboard::Up)) if (p1.dir!=0) p1.dir=3;
@@ -84,7 +88,8 @@ int main()
         if (Keyboard::isKeyPressed(Keyboard::D)) if (p2.dir!=1)  p2.dir=2;
         if (Keyboard::isKeyPressed(Keyboard::W)) if (p2.dir!=0) p2.dir=3;
         if (Keyboard::isKeyPressed(Keyboard::S)) if (p2.dir!=3) p2.dir=0;
-
+    
+      
         if (!Game)    continue;
 
         for(int i=0;i<speed;i++)
@@ -94,7 +99,7 @@ int main()
             if (field[p2.x][p2.y]==1) Game=0;
             field[p1.x][p1.y]=1; 
             field[p2.x][p2.y]=1;
-    
+    //Otimiza as luzes do display
             t.display();  
           shader->setParameter("frag_LightOrigin", Vector2f(p1.x,p1.y));
           shader->setParameter("frag_LightColor", p1.getColor());
@@ -104,7 +109,7 @@ int main()
           t.draw(sprite. states);
         }
 
-        // Desenha o Frame
+    ////// draw  ///////
         window.clear();
         window.draw(sprite);
         window.display();
