@@ -72,7 +72,7 @@ int main()
     while (window.isOpen())
     {
         Event e;
-        while (window.pollEvent(e))
+        while (window.pollEvent(e))//detecta se um evento fecha o programa
         {
             if (e.type == Event::Closed) 
                 window.close();
