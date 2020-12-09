@@ -104,7 +104,7 @@ int main()
           t.draw(sprite. states);
         }
 
-       ////// draw  ///////
+        // Desenha o Frame
         window.clear();
         window.draw(sprite);
         window.display();
