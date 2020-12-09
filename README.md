@@ -1,4 +1,10 @@
 # Tron
-Diógenes Pereira Fernandes
+Jogo em C++ utilizando a biblioteca SFML
 
-Criação de um jogo utilizando SFML para a matéria de Lab.Estrutura de Dados
+Para jogar, deve-se ter um compilador de C++ (g++) e a lib SFML instalada.
+
+Comandos:
+
+g++ main.cpp -o name -lsfml-graphics -lsfml-window -lsfml-system
+
+./name
